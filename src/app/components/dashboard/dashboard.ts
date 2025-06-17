@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WeatherService } from '../../services/weather-service.js';
+import { WeatherService } from '../../services/weather-service';
 import { Observable, catchError, of, map, startWith } from 'rxjs';
 
 type WeatherState =
@@ -10,9 +10,9 @@ type WeatherState =
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule], // ✅ Add CommonModule here
+  imports: [CommonModule],
   templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.scss'], // 🔧 use `styleUrls` (plural)
+  styleUrl: './dashboard.scss', // 🔧 use `styleUrls` (plural)
 })
 export class Dashboard {
   weatherState$!: Observable<WeatherState>;
