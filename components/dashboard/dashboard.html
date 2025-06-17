@@ -1,0 +1,18 @@
+<div class="dashboard-container" aria-label="Weather Dashboard" tabindex="0">
+  <section *ngIf="weatherState$ | async as state">
+    <!-- Loading -->
+    <p *ngIf="state.status === 'loading'">Loading weather data...</p>
+
+    <!-- Error -->
+    <p *ngIf="state.status === 'error'">⚠️ Error: {{ state.error }}</p>
+
+    <!-- Success (typed safely) -->
+    <section *ngIf="isSuccess(state)" class="weather-card">
+      <h1>Weather in {{ state.data.name }}</h1>
+      <p><strong>Temperature:</strong> {{ state.data.main.temp }}°C</p>
+      <p><strong>Humidity:</strong> {{ state.data.main.humidity }}%</p>
+      <p><strong>Wind Speed:</strong> {{ state.data.wind.speed }} m/s</p>
+      <p><strong>Condition:</strong> {{ state.data.weather[0].description }}</p>
+    </section>
+  </section>
+</div>
