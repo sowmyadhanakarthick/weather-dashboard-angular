@@ -4,9 +4,11 @@ import { WeatherService } from '../../services/weather-service';
 import { Observable, of, map, catchError, startWith } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { WeatherData } from '../../models/weather-data.model';
+
 type WeatherState =
   | { status: 'loading' }
-  | { status: 'success'; data: any }
+  | { status: 'success'; data: WeatherData }
   | { status: 'error'; error: string };
 
 @Component({
