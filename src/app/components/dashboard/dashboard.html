@@ -51,25 +51,27 @@
 
     <!-- Success -->
     <section *ngIf="isSuccess(state)" class="weather-card">
-      <h1>Weather in {{ state.data.name }}</h1>
-
-      <img
-        [src]="'https://openweathermap.org/img/wn/' + state.data.weather[0].icon + '@2x.png'"
-        [alt]="state.data.weather[0].description"
-        width="100"
-        height="100"
-      />
-
-      <p>
-        <strong>Temperature:</strong>
-        {{ state.data.main.temp }}°{{ unit === 'metric' ? 'C' : 'F' }}
-      </p>
-      <p><strong>Humidity:</strong> {{ state.data.main.humidity }}%</p>
-      <p>
-        <strong>Wind Speed:</strong>
-        {{ state.data.wind.speed }} {{ unit === 'metric' ? 'm/s' : 'mph' }}
-      </p>
-      <p><strong>Condition:</strong> {{ state.data.weather[0].description }}</p>
+      <div class="weather-content">
+        <h1>Weather in {{ state.data.name }}</h1>
+        <img
+          [src]="'https://openweathermap.org/img/wn/' + state.data.weather[0].icon + '@2x.png'"
+          [alt]="state.data.weather[0].description"
+          width="100"
+          height="100"
+        />
+        <p>
+          <strong>Temperature:</strong> {{ state.data.main.temp }}°{{ unit ===
+          'metric' ? 'C' : 'F' }}
+        </p>
+        <p><strong>Humidity:</strong> {{ state.data.main.humidity }}%</p>
+        <p>
+          <strong>Wind Speed:</strong> {{ state.data.wind.speed }} {{ unit ===
+          'metric' ? 'm/s' : 'mph' }}
+        </p>
+        <p>
+          <strong>Condition:</strong> {{ state.data.weather[0].description }}
+        </p>
+      </div>
     </section>
   </section>
 </div>
