@@ -7,13 +7,13 @@ A responsive and accessible weather dashboard built with **Angular 20**, **RxJS*
 ## Screenshots
 
 ### Weather in Chennai
-![Weather Chennai](./screenshots/weather-chennai.png)
+
 
 ### Weather in California
-![Weather California](./screenshots/weather-california.png)
+
 
 ### Invalid City Handling
-![City Not Found](./screenshots/city-not-found.png)
+
 
 ---
 
