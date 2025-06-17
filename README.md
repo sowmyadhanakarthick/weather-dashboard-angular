@@ -1,59 +1,49 @@
-# AngularRxjsDashboard
+# Angular Weather Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.
+A responsive and accessible weather dashboard built with **Angular 20**, **RxJS**, and the **OpenWeatherMap API**. This application provides real-time weather data with city-based search, unit toggle (°C/°F), weather icons, and clean error handling.
 
-## Development server
+---
 
-To start a local development server, run:
+## Screenshots
 
-```bash
-ng serve
-```
+### Weather in Chennai
+![Weather Chennai](./screenshots/weather-chennai.png)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Weather in California
+![Weather California](./screenshots/weather-california.png)
 
-## Code scaffolding
+### Invalid City Handling
+![City Not Found](./screenshots/city-not-found.png)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## Features
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Search weather by city name with debounce
+- Toggle between Celsius and Fahrenheit
+- Weather icons and live data via OpenWeatherMap API
+- Clear error handling when city is not found
+- Fully reactive using Angular standalone APIs and RxJS
+- Accessible (aria attributes, legend/fieldset)
+- SCSS styling and responsive layout
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## Tech Stack
 
-To build the project run:
+- Angular 20
+- RxJS
+- SCSS
+- OpenWeatherMap API
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## API Key Setup
 
-## Running unit tests
+The `environment.ts` file should contain OpenWeatherMap API key:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```ts
+export const environment = {
+  production: false,
+  openWeatherApiKey: 'YOUR_API_KEY'
+};
