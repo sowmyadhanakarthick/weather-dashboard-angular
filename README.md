@@ -7,15 +7,15 @@ A responsive and accessible weather dashboard built with **Angular 20**, **RxJS*
 ## Screenshots
 
 ### Weather in Bangalore
-![forecast-1](https://github.com/user-attachments/assets/1da48f8f-c4dc-4a54-9e9e-8e3231f5cd29)
+![updated-forecast-1](https://github.com/user-attachments/assets/b36ffb25-752a-47dd-b2f5-b309ae76f216)
 
 
 ### Weather in Chennai
-![forecast-2](https://github.com/user-attachments/assets/517cc0df-2dfc-42b0-ae1c-580b29fe4034)
+![updated-forecast-2](https://github.com/user-attachments/assets/f750dd7b-55c6-42b6-9317-6a6c6ed1e3cc)
 
 
 ### Invalid City Handling
-![error-screenshot](https://github.com/user-attachments/assets/b3536799-de1e-4f49-bdd0-23ab69e52933)
+![invalid-input](https://github.com/user-attachments/assets/63aba28a-0a2e-43b3-b7b1-f6cc420ef58f)
 
 
 ---
