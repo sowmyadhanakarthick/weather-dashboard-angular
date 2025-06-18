@@ -7,37 +7,42 @@ A responsive and accessible weather dashboard built with **Angular 20**, **RxJS*
 ## Screenshots
 
 ### Weather in Bangalore
-![forecast-1](https://github.com/user-attachments/assets/1da48f8f-c4dc-4a54-9e9e-8e3231f5cd29)
+![updated-forecast-1](https://github.com/user-attachments/assets/b36ffb25-752a-47dd-b2f5-b309ae76f216)
 
 
 ### Weather in Chennai
-![forecast-2](https://github.com/user-attachments/assets/517cc0df-2dfc-42b0-ae1c-580b29fe4034)
+![updated-forecast-2](https://github.com/user-attachments/assets/f750dd7b-55c6-42b6-9317-6a6c6ed1e3cc)
 
 
 ### Invalid City Handling
-![error-screenshot](https://github.com/user-attachments/assets/b3536799-de1e-4f49-bdd0-23ab69e52933)
+![invalid-input](https://github.com/user-attachments/assets/63aba28a-0a2e-43b3-b7b1-f6cc420ef58f)
 
 
 ---
 
 ## Features
 
-- Search weather by city name with debounce
-- Toggle between Celsius and Fahrenheit
-- Weather icons and live data via OpenWeatherMap API
+- Search for weather by city name
+- Live data via OpenWeatherMap API
+- Toggle between Celsius (°C) and Fahrenheit (°F)
 - Clear error handling when city is not found
-- Fully reactive using Angular standalone APIs and RxJS
-- Accessible (aria attributes, legend/fieldset)
+- Keyboard-accessible and screen-reader friendly
 - SCSS styling and responsive layout
+- Uses Font Awesome for weather detail icons
+- Built with Angular standalone components and modern RxJS patterns
 
 ---
 
 ## Tech Stack
 
-- Angular 20
-- RxJS
-- SCSS
-- OpenWeatherMap API
+| Tech        | Description                    |
+|-------------|--------------------------------|
+| Angular 20  | Frontend framework             |
+| RxJS        | Reactive state and streams     |
+| SCSS        | Component-based styling        |
+| OpenWeatherMap API | Weather data source     |
+| Font Awesome| Icons                          |
+| Jasmine & Karma | Unit testing framework     |
 
 ---
 
