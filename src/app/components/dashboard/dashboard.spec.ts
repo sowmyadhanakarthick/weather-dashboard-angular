@@ -6,83 +6,105 @@ import {
 } from '@angular/core/testing';
 import { Dashboard } from './dashboard';
 import { WeatherService } from '../../services/weather-service';
-import { WeatherData } from '../../models/weather-data.model';
 import { of, throwError } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { WeatherData } from '../../models/weather-data.model';
 
 describe('Dashboard Component', () => {
   let component: Dashboard;
   let fixture: ComponentFixture<Dashboard>;
   let mockWeatherService: jasmine.SpyObj<WeatherService>;
 
-  const mockData: WeatherData = {
+  const mockWeatherData: WeatherData = {
     name: 'Bangalore',
-    main: { temp: 25, humidity: 60 },
-    wind: { speed: 5 },
+    sys: { country: 'IN' },
+    main: {
+      temp: 25,
+      feels_like: 27,
+      humidity: 80,
+      pressure: 1012,
+    },
     weather: [{ description: 'clear sky', icon: '01d' }],
+    wind: { speed: 5 },
+    visibility: 10000,
   };
 
-  beforeEach(async () => {
+  beforeEach(() => {
     mockWeatherService = jasmine.createSpyObj('WeatherService', ['getWeather']);
-    await TestBed.configureTestingModule({
-      imports: [Dashboard, ReactiveFormsModule],
+
+    TestBed.configureTestingModule({
+      imports: [Dashboard, CommonModule, ReactiveFormsModule],
       providers: [{ provide: WeatherService, useValue: mockWeatherService }],
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(Dashboard);
     component = fixture.componentInstance;
   });
 
-  it('should create the dashboard component', () => {
+  it('should create the component and initialize with default city', () => {
     expect(component).toBeTruthy();
+    expect(component.cityControl.value).toBe('Bangalore');
+    expect(component.unit).toBe('metric');
   });
 
-  it('should load weather data on init', fakeAsync(() => {
-    mockWeatherService.getWeather.and.returnValue(of(mockData));
+  it('should return true for isSuccess with correct state', () => {
+    const state = { status: 'success' as const, data: mockWeatherData };
+    expect(component.isSuccess(state)).toBeTrue();
+  });
 
-    fixture.detectChanges();
-    tick(500);
+  it('should return true for isError with correct state', () => {
+    const state = { status: 'error' as const, error: 'Failed to load' };
+    expect(component.isError(state)).toBeTrue();
+  });
 
-    component.weatherState$.subscribe((state) => {
-      if (component.isSuccess(state)) {
-        expect(state.data.name).toBe('Bangalore');
-        expect(state.data.main.temp).toBe(25);
-      }
-    });
-  }));
+  it('should update unit and trigger weather fetch when setUnit is called', () => {
+    spyOn(component.cityControl, 'setValue');
 
-  it('should show error state if service fails', fakeAsync(() => {
-    mockWeatherService.getWeather.and.returnValue(
-      throwError(() => new Error('Service failed'))
-    );
-
-    fixture.detectChanges();
-    tick(500);
-
-    component.weatherState$.subscribe((state) => {
-      if (component.isError(state)) {
-        expect(state.error).toContain('Service failed');
-      }
-    });
-  }));
-
-  it('should update unit and trigger weather fetch', () => {
-    const setValueSpy = spyOn(component.cityControl, 'setValue');
     component.setUnit('imperial');
     expect(component.unit).toBe('imperial');
-    expect(setValueSpy).toHaveBeenCalled();
+    expect(component.unit$.value).toBe('imperial');
+    expect(component.cityControl.setValue).toHaveBeenCalledWith('Bangalore');
   });
 
-  it('isSuccess() should return true only for success state', () => {
-    const state: any = { status: 'success', data: mockData };
-    expect(component.isSuccess(state)).toBeTrue();
-    expect(component.isError(state)).toBeFalse();
-  });
+  it('should emit success state with weather data from service', fakeAsync(() => {
+    mockWeatherService.getWeather.and.returnValue(of(mockWeatherData));
 
-  it('isError() should return true only for error state', () => {
-    const state: any = { status: 'error', error: 'Oops' };
-    expect(component.isError(state)).toBeTrue();
-    expect(component.isSuccess(state)).toBeFalse();
-  });
+    let result: any;
+    component.weatherState$.subscribe((state) => {
+      if (state.status === 'success') result = state.data;
+    });
+
+    component.cityControl.setValue('Bangalore');
+    tick(500);
+    expect(result).toEqual(mockWeatherData);
+  }));
+
+  it('should emit error state when service fails', fakeAsync(() => {
+    mockWeatherService.getWeather.and.returnValue(
+      throwError(() => new Error('API error'))
+    );
+
+    let errorMsg = '';
+    component.weatherState$.subscribe((state) => {
+      if (state.status === 'error') errorMsg = state.error;
+    });
+
+    component.cityControl.setValue('InvalidCity');
+    tick(500);
+    expect(errorMsg).toBe('API error');
+  }));
+
+  it('should emit loading state initially', fakeAsync(() => {
+    mockWeatherService.getWeather.and.returnValue(of(mockWeatherData));
+
+    let states: string[] = [];
+    component.weatherState$.subscribe((state) => {
+      states.push(state.status);
+    });
+
+    component.cityControl.setValue('Chennai');
+    tick(500);
+    expect(states[0]).toBe('loading');
+  }));
 });
