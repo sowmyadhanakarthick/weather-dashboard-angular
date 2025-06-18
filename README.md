@@ -1,6 +1,7 @@
 # Angular Weather Dashboard
 
-A responsive and accessible weather dashboard built with **Angular 20**, **RxJS**, and the **OpenWeatherMap API**. This application provides real-time weather data with city-based search, unit toggle (°C/°F), weather icons, and clean error handling.
+A responsive and accessible weather dashboard built with **Angular 20**, **RxJS**, and the **OpenWeatherMap API**. This application provides real-time weather data with city-based search, unit toggling (°C/°F), dynamic icons, and clear error handling.
+
 
 ---
 
