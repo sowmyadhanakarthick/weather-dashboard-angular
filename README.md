@@ -16,7 +16,8 @@ A responsive and accessible weather dashboard built with **Angular 20**, **RxJS*
 
 
 ### Invalid City Handling
-![invalid-input](https://github.com/user-attachments/assets/63aba28a-0a2e-43b3-b7b1-f6cc420ef58f)
+![image](https://github.com/user-attachments/assets/e4da41ee-f07a-4176-b416-1679ff5bb07d)
+
 
 
 ---
