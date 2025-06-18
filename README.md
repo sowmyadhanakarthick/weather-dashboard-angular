@@ -22,22 +22,27 @@ A responsive and accessible weather dashboard built with **Angular 20**, **RxJS*
 
 ## Features
 
-- Search weather by city name with debounce
-- Toggle between Celsius and Fahrenheit
-- Weather icons and live data via OpenWeatherMap API
+- Search for weather by city name
+- Live data via OpenWeatherMap API
+- Toggle between Celsius (°C) and Fahrenheit (°F)
 - Clear error handling when city is not found
-- Fully reactive using Angular standalone APIs and RxJS
-- Accessible (aria attributes, legend/fieldset)
+- Keyboard-accessible and screen-reader friendly
 - SCSS styling and responsive layout
+- Uses Font Awesome for weather detail icons
+- Built with Angular standalone components and modern RxJS patterns
 
 ---
 
 ## Tech Stack
 
-- Angular 20
-- RxJS
-- SCSS
-- OpenWeatherMap API
+| Tech        | Description                    |
+|-------------|--------------------------------|
+| Angular 20  | Frontend framework             |
+| RxJS        | Reactive state and streams     |
+| SCSS        | Component-based styling        |
+| OpenWeatherMap API | Weather data source     |
+| Font Awesome| Icons                          |
+| Jasmine & Karma | Unit testing framework     |
 
 ---
 
